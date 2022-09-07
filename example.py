@@ -19,6 +19,11 @@ def main():
 	st.title("File Upload Tutorial")
 	menu = ["Image","Dataset","DocumentFiles","About"]
 	choice = st.sidebar.selectbox("Menu",menu)
+        tab1, tab2, tab3 = st.tabs(["img1", "Dog", "Owl"])
+
+#    with tab1:
+#        st.header("A cat")
+#        st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
 
 	if choice == "Image":
 		st.subheader("Image")
@@ -29,7 +34,9 @@ def main():
 					"filesize":image_file.size}
 			st.sidebar.write(file_details)
 			# To View Uploaded Image
-			st.image(load_image(image_file),width=1000)
+                        with tab1:
+                                st.header(image_file.name)
+			        st.image(load_image(image_file),width=1000)
 
 	elif choice == "Dataset":
 		st.subheader("Dataset")
