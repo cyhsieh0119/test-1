@@ -2,7 +2,7 @@
 import streamlit as st
 import numpy as np
 import torch
-import scipy.stats as st
+#import scipy.stats as st
 import plotly.express as px
 from matplotlib import pyplot as plt
 
