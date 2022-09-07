@@ -18,13 +18,13 @@ def main():
 	    choice = st.sidebar.selectbox("Menu",menu)
 
 	    if choice == "Image":
-		st.subheader("Image")
+			st.subheader("Image")
 
 	    elif choice == "Dataset":
-		st.subheader("Dataset")
+			st.subheader("Dataset")
 
 	    elif choice == "DocumentFiles":
-		st.subheader("DocumentFiles")
+			st.subheader("DocumentFiles")
 
 def load_image(image_file):
 	    img = Image.open(image_file)
@@ -35,12 +35,12 @@ if choice == "Image":
 	    image_file = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
 
 	    if image_file is not None:
-		# To See details
-		file_details = {"filename":image_file.name, "filetype":image_file.type,
-				"filesize":image_file.size}
-		st.write(file_details)
-		# To View Uploaded Image
-		st.image(load_image(image_file),width=250)
+			# To See details
+			file_details = {"filename":image_file.name, "filetype":image_file.type,
+					"filesize":image_file.size}
+			st.write(file_details)
+			# To View Uploaded Image
+			st.image(load_image(image_file),width=250)
 
 if __name__ == '__main__':
 	main()
