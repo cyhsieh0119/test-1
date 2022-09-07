@@ -12,6 +12,21 @@ st.markdown("# Image converter page 🎈")
 st.sidebar.markdown("# Main page 🎈 of Side Bar")
 
 
+def main():
+	st.title("File Upload Tutorial")
+
+	menu = ["Image","Dataset","DocumentFiles","About"]
+	choice = st.sidebar.selectbox("Menu",menu)
+
+	if choice == "Image":
+		st.subheader("Image")
+
+    elif choice == "Dataset":
+		st.subheader("Dataset")
+
+    elif choice == "DocumentFiles":
+		st.subheader("DocumentFiles")
+
 def load_image(image_file):
 	img = Image.open(image_file)
 	return img
