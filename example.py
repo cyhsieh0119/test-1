@@ -2,7 +2,7 @@ from PIL import Image
 import streamlit as st
 import numpy as np
 import torch
-#import scipy.stats as st
+import scipy.stats as sst
 import plotly.express as px
 from matplotlib import pyplot as plt
 
