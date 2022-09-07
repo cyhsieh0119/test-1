@@ -29,7 +29,7 @@ def main():
 					"filesize":image_file.size}
 			st.write(file_details)
 			# To View Uploaded Image
-			st.image(load_image(image_file),width=500)
+			st.image(load_image(image_file),width=1000)
 
 	elif choice == "Dataset":
 		st.subheader("Dataset")
