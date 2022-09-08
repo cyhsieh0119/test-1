@@ -31,7 +31,7 @@ def initD():
 	else:
 		transform = midas_transforms.small_transform
 	
-def depthRwa(img0):
+def depthRaw(img0):
 	#img0 = cv2.imread(path)
  	#
 	#w, h = im0.size
@@ -51,21 +51,6 @@ def depthRwa(img0):
 				).squeeze()
 	output = prediction.cpu().numpy()
 	return output
-
-	
-def depth(img):
-	cv_image = np.array(img) 
-	img = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
-
-	input_batch = transform(img).to(device)
-	with torch.no_grad():
-		prediction = midas(input_batch)
-		prediction = torch.nn.functional.interpolate(
-			prediction.unsqueeze(1),
-			size=img.shape[:2],
-			mode="bicubic",
-			align_corners=False,
-		).squeeze()
 
 def load_image(image_file):
 	#img = cv2.imread(image_file)
@@ -87,13 +72,16 @@ def main():
 		image_file = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
 		if image_file is not None:
 			# To See details
+			img0=load_image(image_file)
+			output=depthRaw(img0)
 			file_details = {"filename":image_file.name, "filetype":image_file.type,
 					"filesize":image_file.size}
 			st.sidebar.write(file_details)
 			# To View Uploaded Image
 			with tab1:
 				st.header(image_file.name)
-				st.image(load_image(image_file),width=1000)
+				st.image(img0,width=1000)
+				
 
 	elif choice == "Dataset":
 		st.subheader("Dataset")
