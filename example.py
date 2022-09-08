@@ -49,9 +49,8 @@ def depthRwa(img0, ratio):
 				mode="bicubic",
 				align_corners=False,
 				).squeeze()
-	#
-		output = prediction.cpu().numpy()
-    	return output
+	output = prediction.cpu().numpy()
+	return output
 
 	
 def depth(img):
