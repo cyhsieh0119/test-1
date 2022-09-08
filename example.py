@@ -32,6 +32,7 @@ def initD():
 		transform = midas_transforms.small_transform
 	
 def depthRaw(img0):
+	initD()
 	#img0 = cv2.imread(path)
  	#
 	#w, h = im0.size
@@ -93,5 +94,5 @@ def main():
 
 
 if __name__ == '__main__':
-	initD()
+	#initD()
 	main()
