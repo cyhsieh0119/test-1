@@ -50,7 +50,7 @@ def depthRaw(img0):
 	#
 		prediction = torch.nn.functional.interpolate(
 				prediction.unsqueeze(1),
-				size=img.shape[:2],
+				size=img0.shape[:2],
 				mode="bicubic",
 				align_corners=False,
 				).squeeze()
