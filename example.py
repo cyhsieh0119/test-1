@@ -31,14 +31,14 @@ def initD():
 	else:
 		transform = midas_transforms.small_transform
 	
-def depthRwa(img0, ratio):
+def depthRwa(img0):
 	#img0 = cv2.imread(path)
  	#
-	img = cv2.cvtColor(img0, cv2.COLOR_BGR2RGB)
-	h, w = img.shape[0]*ratio, img.shape[1]*ratio
-	img = cv2.resize(img, (int(w), int(h)), 0, 0, interpolation=cv2.INTER_CUBIC)
+	#w, h = im0.size
+	#h, w = img.shape[0]*ratio, img.shape[1]*ratio
+	#img = cv2.resize(img, (int(w), int(h)), 0, 0, interpolation=cv2.INTER_CUBIC)
 	#
-	input_batch = transform(img).to(device)
+	input_batch = transform(img0).to(device)
 	#
 	with torch.no_grad():
 		prediction = midas(input_batch)
@@ -68,8 +68,8 @@ def depth(img):
 		).squeeze()
 
 def load_image(image_file):
-	img = cv2.imread(image_file)
-	#img = Image.open(image_file)
+	#img = cv2.imread(image_file)
+	img = Image.open(image_file)
 	return img
 
 def main():
@@ -105,4 +105,5 @@ def main():
 
 
 if __name__ == '__main__':
+	
 	main()
