@@ -78,7 +78,10 @@ def main():
 		if image_file is not None:
 			# To See details
 			img0=load_image(image_file)
-			output=depthRaw(img0)
+			img = img0.save(image_file.name)
+			frame = cv2.imread(image_file.name)
+			img1 = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+			output=depthRaw(img1)
 			file_details = {"filename":image_file.name, "filetype":image_file.type,
 					"filesize":image_file.size}
 			st.sidebar.write(file_details)
