@@ -1,12 +1,9 @@
 from PIL import Image
 import cv2
-import numpy as np
-from PIL import Image
 import streamlit as st
 import numpy as np
 import torch
 import scipy.stats as sst
-import plotly.express as px
 from matplotlib import pyplot as plt
 
 st.set_page_config(page_title="Image converter" ,page_icon="random" ,layout="wide")
@@ -32,12 +29,19 @@ def initD():
 		transform = midas_transforms.small_transform
 	
 def depthRaw(img0):
-	initD()
-	#img0 = cv2.imread(path)
- 	#
-	#w, h = im0.size
-	#h, w = img.shape[0]*ratio, img.shape[1]*ratio
-	#img = cv2.resize(img, (int(w), int(h)), 0, 0, interpolation=cv2.INTER_CUBIC)
+	#
+	model_type = "DPT_Hybrid"   # MiDaS v3 - Hybrid   (medium accuracy, medium inference speed)
+	midas = torch.hub.load("intel-isl/MiDaS", model_type)
+	#
+	device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+	midas.to(device)
+	midas.eval()
+	#
+	midas_transforms = torch.hub.load("intel-isl/MiDaS", "transforms")
+	if model_type == "DPT_Large" or model_type == "DPT_Hybrid":
+		transform = midas_transforms.dpt_transform
+	else:
+		transform = midas_transforms.small_transform
 	#
 	input_batch = transform(img0).to(device)
 	#
